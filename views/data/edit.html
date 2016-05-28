@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html>
+  <head>
+     <%include ../partials/head.html %>
+  </head>
+  <body class="hold-transition skin-blue sidebar-mini">
+    <div class="wrapper">
+      <header class="main-header">
+        <%include ../partials/header.html %>
+      </header>
+      <aside class="main-sidebar">
+        <%include ../partials/menu.html %>
+      </aside>
+      <div class="content-wrapper">
+        <div class="content">
+          <div class="row">
+            <div class="col-md-12">
+                <div class="box">
+
+                  <form action="/data/edit/<%=item._id%>" method="post" enctype="multipart/form-data" onsubmit="return editData(this);"> 
+                    <div class="box-header with-border">
+                      <h3 class="box-title">Edit</h3>
+                      <a href="/data" class="btn btn-primary pull-right"><i class="fa fa-right"></i> Back</a>
+                    </div>
+                    <div class="box-body">
+                        <div id="message"></div>
+                        <div class="form-group">
+                          <label for="application_id">Application</label>
+                          <select name="application_id" class="application-select form-control">
+                            <option value="<%=item.application._id%>" selected="selected"><%=item.application.name%></option>
+                          </select>
+                        </div>
+                        <div class="form-group">
+                          <label for="name">Name</label>
+                          <input type="text" class="form-control" name="name" placeholder="Name" value="<%=item.name%>">
+                        </div>
+                        <div class="form-group"> 
+                          <label for="name">Descriptipon</label>
+                          <textarea class="form-control" name="description" placeholder="Description"><%=item.description%></textarea>
+                        </div>
+                        <div class="form-group">
+                          <label for="datasource">DataSource</label>
+                          <a href="/datasource/create" target="_blank">Create New</a>
+                          <select name="datasource" class="datasource-select form-control">
+                            <option value="<%=item.datasource%>" selected="selected"><%=item.datasource%></option>
+                          </select>
+                          <input type="hidden" name="datasources" value="<%=item.datasources.join(",")%>">
+                          <ul class="list-group" id="datasources">
+                            <% for(var i = 0; i < item.datasources.length; i ++) { %>
+                            <li class="list-group-item"><%=item.datasources[i]%></li>
+                            <% } %>
+                          </ul>
+                        </div>
+                        <div class="form-group">
+                          <label for="screenshot">Screenshot</label>
+                          <input type="file" class="form-control" name="screenshot"></input>
+                          <% if(item.screenshot) { %>
+                          <img width="100" height="100" src="data:image/jpg;base64,<%=item.screenshot.replace(/_/g,"/").replace(/-/g,"+")%>" />
+                          <% } %>
+                        </div>
+                    </div>
+                    <div class="box-footer">
+                        <button type="submit" class="btn btn-primary">Save</button>
+                    </div>
+                  </form>
+                </div>
+              </div>
+            </div>
+        </div>
+      </div>
+      <footer class="main-footer">
+        <%include ../partials/footer.html %>
+      </footer>
+      <div class="control-sidebar-bg"></div>
+    </div>
+    <%include ../partials/bottom.html %>
+  </body>
+</html>

@@ -1,0 +1,55 @@
+
+<a href="/" class="logo">
+  <span class="logo-mini"><b>U</b>T</span>
+  <span class="logo-lg"><b>Digi</b>Lab</span>
+</a>
+<nav class="navbar navbar-static-top" role="navigation">
+  <a href="#" class="sidebar-toggle" data-toggle="offcanvas" role="button">
+    <span class="sr-only">Toggle navigation</span>
+  </a>
+  <div class="navbar-left hidden-sm hidden-xs">
+    <form class="navbar-form" role="search">
+      <select class="form-control dashboard-select" style="width:300px">
+        <% if(dashboard != null) { %>
+        <option value="<%=dashboard._id%>" selected="selected"><%=dashboard.title%></option>
+        <% } else { %>
+        <option value="" selected="selected">Select Dashboard</option>
+        <% } %>
+      </select>
+      <% if(dashboard != null) { %>
+      <a class="btn btn-default btn-flat" data-toggle="modal" data-target="#create-dashboard"><i class="fa fa-plus"></i></a>
+      <a class="btn btn-default btn-flat" data-toggle="modal" data-target="#edit-dashboard"><i class="fa fa-pencil"></i></a>
+      <a class="btn btn-default btn-flat" data-toggle="modal" data-target="#remove-dashboard"><i class="fa fa-trash"></i></a>
+      <a class="btn btn-default btn-flat" data-toggle="modal" data-target="#duplicate-dashboard"><i class="fa fa-copy"></i></a>
+      <% } %>
+    </form>
+  </div>
+  <div class="navbar-custom-menu">
+    <ul class="nav navbar-nav">
+      <li class="dropdown user user-menu">
+        <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+          <span class="hidden-xs"><%=user.name || user.username %></span>
+          <span class="fa fa-user visible-xs"></span>
+        </a>
+        <ul class="dropdown-menu">
+          <li class="user-header">
+            <p>
+              <%=user.name || user.username %>
+              <small>Member since <%=formatDate(user.created_on, "mmmm yyyy")%></small>
+            </p>
+          </li>
+          <li class="user-body">
+          </li>
+          <li class="user-footer">
+            <div class="pull-left">
+              <a href="/settings" class="btn btn-default btn-flat">Settings</a>
+            </div>
+            <div class="pull-right">
+              <a href="/signout" class="btn btn-default btn-flat">Sign out</a>
+            </div>
+          </li>
+        </ul>
+      </li>
+    </ul>
+  </div>
+</nav>

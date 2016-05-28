@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html>
+  <head>
+     <%include ./partials/head.html %>
+  </head>
+  <body class="hold-transition skin-blue sidebar-collapse">
+    <div class="wrapper">
+      <header class="main-header">
+        <%include ./partials/header.html %>
+      </header>
+      <aside class="main-sidebar">
+        <%include ./partials/menu.html %>
+      </aside>
+      <div class="content-wrapper">
+        <section class="content">
+            <h1 class="headline <%=err.status >= 500 || !err.status ? "text-red": "text-yellow" %>">
+              <i class="fa fa-warning"></i> <%=err.status || 500 %>
+            </h1>
+            <h2> <%=message%></h2>
+            <% if (err.stack) { %> 
+            <p>
+              <%=err.stack%>
+            </p>
+            <% } %>
+            <% if( err.status == 404 ) { %>
+            <form class="search-form" action="/search" method="GET">
+              <div class="input-group">
+                <input type="text" name="q" class="form-control" placeholder="Search">
+                <div class="input-group-btn">
+                  <button type="submit" name="submit" class="btn <%=err.status >= 500 ? "btn-danger": "btn-warning" %> btn-flat"><i class="fa fa-search"></i></button>
+                </div>
+              </div>
+            </form>
+            <% } %>
+        </section>
+      </div>
+      <footer class="main-footer">
+        <%include ./partials/footer.html %>
+      </footer>
+      <div class="control-sidebar-bg"></div>
+    </div>
+    <%include ./partials/bottom.html %>
+  </body>
+</html>

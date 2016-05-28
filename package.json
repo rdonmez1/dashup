@@ -1,0 +1,42 @@
+{
+  "name": "dash-up.com",
+  "version": "0.0.1",
+  "private": true,
+  "scripts": {
+    "start": "node ./bin/www",
+    "dev": "NODE_ENV=development node ./bin/www"
+  },
+  "dependencies": {
+    "bcrypt-nodejs": "latest",
+    "body-parser": "latest",
+    "cluster": "latest",
+    "compression": "latest",
+    "connect-flash": "~0.1.1",
+    "connect-mongo": "latest",
+    "connect-multiparty": "^2.0.0",
+    "cookie-parser": "latest",
+    "dateformat": "^1.0.11",
+    "debug": "^2.2.0",
+    "ejs": "latest",
+    "ejs-locals": "latest",
+    "elasticsearch": "latest",
+    "express": "latest",
+    "express-redis-cache": "^0.1.8",
+    "express-session": "latest",
+    "googleapis": "^2.1.7",
+    "ioredis": "^1.9.1",
+    "mongodb": "latest",
+    "mongoose": "latest",
+    "multer": "^1.1.0",
+    "nodemailer": "^1.3.4",
+    "numeral": "^1.5.3",
+    "passport": "^0.3.2",
+    "passport-local": "^1.0.0",
+    "pictoose": "0.0.6",
+    "request": "^2.72.0",
+    "serve-favicon": "^2.2.0",
+    "simple-oauth2": "^0.7.0",
+    "slug": "^0.9.1",
+    "uuid": "^2.0.1"
+  }
+}

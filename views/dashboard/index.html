@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html>
+  <head>
+     <%include ../partials/head.html %>
+  </head>
+  <body class="hold-transition skin-blue sidebar-collapse">
+    <div class="wrapper">
+      <header class="main-header">
+        <%include ../partials/header.html %>
+      </header>
+      <aside class="main-sidebar">
+        <%include ../partials/menu.html %>
+      </aside>
+      <div class="content-wrapper">
+        <section class="content text-center">
+          <% if(dashboard== null) {
+           %>
+            <button type="button" class="btn btn-primary btn-lg btn-flat" data-toggle="modal" data-target="#create-dashboard">Create Dashboard</button>
+           <% } else if(widgets.length < 1) { %>
+            <button type="button" class="btn btn-primary btn-lg btn-flat" data-toggle="modal" data-target="#create-widget">Add Widget</button>
+          <% } else { 
+            for (var i = 0; i < widgets.length; i++) {
+          %>
+          
+          <% } } %>
+        </section>
+      </div>
+      <footer class="main-footer">
+        <%include ../partials/footer.html %>
+      </footer>
+      <div class="control-sidebar-bg"></div>
+    </div>
+    <%include ../partials/bottom.html %>
+  </body>
+</html>

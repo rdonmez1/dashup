@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html>
+  <head>
+     <%include ./partials/head.html %>
+  </head>
+  <body class="hold-transition skin-blue sidebar-collapse">
+    <div class="wrapper">
+      <header class="main-header">
+        <%include ./partials/header.html %>
+      </header>
+      <aside class="main-sidebar">
+        <%include ./partials/menu.html %>
+      </aside>
+      <div class="content-wrapper">
+        <section class="content text-center">
+          <a href="/connect/googleanalytics" class="btn btn-primary btn-lg btn-flat" target="_blank"><%=i18n.connect_to_ga%></a>
+          <a href="/auth2/callback" class="btn btn-primary btn-lg btn-flat" target="_blank"><%=i18n.connect_to_crm%></a>
+        </section>
+      </div>
+      <footer class="main-footer">
+        <%include ./partials/footer.html %>
+      </footer>
+      <div class="control-sidebar-bg"></div>
+    </div>
+    <%include ./partials/bottom.html %>
+  </body>
+</html>

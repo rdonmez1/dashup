@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html>
+  <head>
+     <%include ../partials/head.html %>
+  </head>
+  <body class="hold-transition skin-blue sidebar-collapse">
+    <div class="wrapper">
+      <header class="main-header">
+        <%include ../partials/header.html %>
+      </header>
+      <aside class="main-sidebar">
+        <%include ../partials/menu.html %>
+      </aside>
+      <div class="content-wrapper">
+        <section class="content text-center">
+         <div class="col-lg-12"> 
+                
+                <div class="col-lg-6"> 
+                  <div class="box">
+                    <form id="change-password" action="/user/change-password" method="post">
+                      <div class="box-header with-border">
+                        <h3 class="box-title"><i class="fa fa-lock"></i> Change Password</h3>
+                        <div class="box-tools pull-right">
+                          
+                        </div>
+                      </div>
+                      <div class="box-body">
+                          <div id="change-password-body"></div>
+                          <input type="hidden" name="email" value="<%=user.username%>">
+                          <div class="form-group">
+                            <label for="password">Old Password</label>
+                            <input type="password" class="form-control" name="password" placeholder="Old Password">
+                          </div>
+                          <div class="form-group">
+                            <label for="password1">New Password</label>
+                            <input type="password" class="form-control" name="password1" placeholder="New Password">
+                          </div>
+                          <div class="form-group">
+                            <label for="password2">Repeat New Password</label>
+                            <input type="password" class="form-control" name="password2" placeholder="Repeat New Password">
+                          </div>
+                      </div>
+                      <div class="box-footer">
+                        <button type="submit" class="pull-right btn btn-primary" id="sendEmail"><i class="fa fa-save"></i> Change</button>
+                      </div>
+                    </form> 
+                    <div id="change-password-overlay" class="overlay hide">
+                        <i class="fa fa-refresh fa-spin"></i>
+                    </div>
+                  </div> 
+                  </div> 
+
+                   <div class="col-lg-6"> 
+                    <div class="box">
+                        <form id="change-password" action="/user/change-password" method="post">
+                          <div class="box-header with-border">
+                            <h3 class="box-title"><i class="fa fa-lock"></i> Change Email</h3>
+                            <div class="box-tools pull-right">
+                              
+                            </div>
+                          </div>
+                          <div class="box-body">
+                              <div id="change-password-body"></div>
+                              <input type="hidden" name="email" value="<%=user.username%>">
+                              <div class="form-group">
+                                <label for="new_email">New Email</label>
+                                <input type="new_email" class="form-control" name="new_email" placeholder="New Email">
+                              </div>
+                          </div>
+                          <div class="box-footer">
+                            <button type="submit" class="pull-right btn btn-primary" id="sendEmail"><i class="fa fa-save"></i> Change</button>
+                          </div>
+                        </form> 
+                        <div id="change-password-overlay" class="overlay hide">
+                            <i class="fa fa-refresh fa-spin"></i>
+                        </div>
+                      </div>
+                    </div> 
+                    </div>
+
+                    <div class="col-lg-12"> 
+                    <div class="box">
+                      <form id="change-profile" action="change-profile" method="post">
+                        <div class="box-header with-border">
+                          <h3 class="box-title"><i class="fa fa-user"></i> Change Preferences</h3>
+                          <div class="box-tools pull-right">
+                          </div>
+                        </div>
+                        <div class="box-body">
+                            <div id="message"></div>
+                            <input type="hidden" name="password" value="dummy">
+                            <input type="hidden" name="email" value="<%=user.username%>"> 
+                            <div class="form-group">
+                              <label for="fullname">Language</label>
+                              <input type="new_email" class="form-control" name="new_email" placeholder="New Email">
+                            </div>
+                            <div class="form-group">
+                              <label for="email">Timezone</label>
+                              <input type="new_email" class="form-control" name="new_email" placeholder="New Email">
+                            </div>
+                            <div class="form-group">
+                              <label for="title">Currency Format</label>
+                              <input type="new_email" class="form-control" name="new_email" placeholder="New Email">
+                            </div>
+                            <div class="form-group">
+                              <label for="email">Data Format</label>
+                              <input type="new_email" class="form-control" name="new_email" placeholder="New Email">
+                            </div>
+                        </div>
+                        <div class="box-footer">
+                          <button type="submit" class="pull-right btn btn-primary" id="sendEmail"><i class="fa fa-save"></i> Save</button>
+                        </div>
+                      </form> 
+                      <div id="change-profile-overlay" class="overlay hide">
+                          <i class="fa fa-refresh fa-spin"></i>
+                      </div>
+                  </div> 
+                  </div> 
+            </div> 
+        </section>
+      </div>
+      <footer class="main-footer">
+        <%include ../partials/footer.html %>
+      </footer>
+      <div class="control-sidebar-bg"></div>
+    </div>
+    <%include ../partials/bottom.html %>
+  </body>
+</html>

@@ -1,0 +1,12 @@
+<section class="sidebar">
+  <ul class="sidebar-menu">
+    <li class="header">MENU</li>
+    <li class="active"><a href="/dashboard"><i class="fa fa-dashboard"></i> <span>Dashboard</span></a></li>
+    <% if(user.roles.indexOf("admin") != -1) { %>
+    <li><a href="/application"><i class="fa fa-cubes"></i> <span>Application</span></a></li>
+    <li><a href="/credential"><i class="fa fa-lock"></i> <span>Credential</span></a></li>
+    <li><a href="/datasource"><i class="fa fa-database"></i> <span>Data Source</span></a></li>
+    <li><a href="/data"><i class="fa fa-rss"></i> <span>Data</span></a></li>
+    <% } %>
+  </ul>
+</section>

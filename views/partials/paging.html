@@ -1,0 +1,30 @@
+ 
+      <ul class="pagination">
+        <% if(page > 1) { %>
+        <li class="paginate_button previous" id="example2_previous">
+          <a href="<%=path%>?o=<%=parseInt(page) - 1%>&q=<%=q%>&s=<%=sort%>">Previous</a>
+        </li> 
+        <% } %>  
+        <% 
+           var minlink_count = 5;
+           var maxlink_count = minlink_count * 2;
+           var start = parseInt(page) - minlink_count; 
+           var end_page = pageCount >  maxlink_count ? maxlink_count : pageCount;
+           start = start < pageCount ? start: pageCount - minlink_count; 
+           start = (start + maxlink_count) >= pageCount ? (pageCount - maxlink_count) : start;
+           start = start < 1 ? 1 : start; 
+           
+        for(var p = start; p < start + end_page; p++) { %>
+        <li class="paginate_button <%=(p==page?"active":"")%>">
+          <a href="<%=path%>?p=<%=p%>&q=<%=q%>&s=<%=sort%>"><%=formatNum(p)%></a>
+        </li>
+        <% } %>
+        <% if(page < pageCount) { %>
+        <li class="paginate_button next" id="example2_next">
+          <a href="<%=path%>?p=<%=parseInt(page) + 1%>&q=<%=q%>&s=<%=sort%>">Next</a>
+        </li>
+        <% } %>
+      </ul> 
+   
+  <span class="pull-right">Showing <%=formatNum(((page -1) * pageSize) + 1) %> to <%= formatNum( (page -1) * pageSize + pageSize ) %> of <%=formatNum(total)%></div>
+ 

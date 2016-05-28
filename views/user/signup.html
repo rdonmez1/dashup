@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html>
+  <head>
+     <%include ../partials/head.html %>
+  </head>
+  <body class="hold-transition login-page">
+    <div class="box register-box">
+      <div class="register-logo">
+        <h1><%=i18n.signup%></h1>
+      </div>
+      <div class="register-box-body">
+        <div id="message"></div>
+        <form action="/user/signup" method="post" onsubmit="return signUp(this);">
+          <div class="form-group has-feedback">
+            <input type="text" name="name" class="form-control" placeholder="Full name">
+            <span class="glyphicon glyphicon-user form-control-feedback"></span>
+          </div>
+          <div class="form-group has-feedback">
+            <input type="email" name="email" class="form-control" placeholder="Email">
+            <span class="glyphicon glyphicon-envelope form-control-feedback"></span>
+          </div>
+          <div class="form-group has-feedback">
+            <input type="password" name="password" class="form-control" placeholder="Password">
+            <span class="glyphicon glyphicon-lock form-control-feedback"></span>
+          </div>
+          <div class="form-group has-feedback">
+            <input type="password" name="password_repeat" class="form-control" placeholder="Retype password">
+            <span class="glyphicon glyphicon-log-in form-control-feedback"></span>
+          </div>
+          <div class="row">
+            <div class="col-xs-8">
+              <div class="checkbox icheck">
+                <label>
+                  <input type="checkbox"> <%-i18n.i_aggree_terms%></a>
+                </label>
+              </div>
+            </div>
+            <div class="col-xs-4">
+              <button type="submit" class="btn btn-primary btn-block btn-flat"><%=i18n.signup%></button>
+            </div>
+          </div>
+        </form>
+        <a href="/signin" class="text-center"><%=i18n.i_already_have_account%></a>
+      </div>
+      <div class="overlay hide">
+        <i class="fa fa-refresh fa-spin"></i>
+      </div>
+    </div>
+    <%include ../partials/bottom.html %>
+    <script src="/plugins/iCheck/icheck.min.js"></script>
+    <script>
+      $(function () {
+        $('input').iCheck({
+          checkboxClass: 'icheckbox_square-blue',
+          radioClass: 'iradio_square-blue',
+          increaseArea: '20%' // optional
+        });
+      });
+    </script>
+  </body>
+</html>

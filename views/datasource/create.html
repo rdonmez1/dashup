@@ -1,0 +1,218 @@
+<!DOCTYPE html>
+<html>
+  <head>
+     <%include ../partials/head.html %>
+  </head>
+  <body class="hold-transition skin-blue">
+    <div class="wrapper">
+      <header class="main-header">
+        <%include ../partials/header.html %>
+      </header>
+      <aside class="main-sidebar">
+        <%include ../partials/menu.html %>
+      </aside>
+      <div class="content-wrapper">
+         <div class="content">
+          <div class="row">
+            <div class="col-md-12">
+              <div class="box">
+                <div class="box-header with-border">
+                  <h3 class="box-title">Data Source Configuration</h3>
+                  <a href="/datasource" class="btn btn-primary pull-right"><i class="fa fa-back"></i> Back</a>
+                </div>
+                <div class="box-body">
+                  <div id="message"></div>
+                  <form action="/datasource/create" method="put" onsubmit="return createDataSource(this);">
+                      <div class="form-group"> 
+                        <label for="name">Name</label>
+                        <input type="text" class="form-control" name="name" placeholder="Name">
+                      </div>
+                      <div class="form-group"> 
+                        <label for="name">Description</label>
+                        <textarea class="form-control" name="description" placeholder="Description"></textarea>
+                      </div>
+                      <div class="form-group">
+                        <label for="credential">Credential</label>
+                        <a href="/credential/create" target="_blank">Create New</a>
+                        <select name="credential_id" class="credential-select form-control">
+                          <option value="" selected="selected">Select Credential</option>
+                        </select>
+                      </div>
+
+
+
+
+
+
+
+                      <fieldset>
+                        <legend>Request</legend>
+                      <div class="input-group">
+                        <div class="input-group-btn">
+                          <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                            <span id="method">Method</span> &nbsp;
+                            <span class="caret"></span></button>
+                          <ul class="dropdown-menu">
+                            <li><a onclick="$('input[name=method]').val('GET');$('#method').text('GET');" href="javascript:void(0)" href="#">GET</a></li>
+                            <li><a onclick="$('input[name=method]').val('POST');$('#method').text('POST');" href="javascript:void(0)">POST</a></li>
+                            <li><a onclick="$('input[name=method]').val('PUT');$('#method').text('PUT');" href="javascript:void(0)">PUT</a></li>
+                            <li><a onclick="$('input[name=method]').val('DELETE');$('#method').text('DELETE');" href="javascript:void(0)">DELETE</a></li>
+                            <li><a onclick="$('input[name=method]').val('PATCH');$('#method').text('PATCH');" href="javascript:void(0)">PATCH</a></li>
+                            <li><a onclick="$('input[name=method]').val('VIEW');$('#method').text('VIEW');" href="javascript:void(0)">VIEW</a></li>
+                            <li><a onclick="$('input[name=method]').val('COPY');$('#method').text('COPY');" href="javascript:void(0)">COPY</a></li>
+                            <li><a onclick="$('input[name=method]').val('HEAD');$('#method').text('HEAD');" href="javascript:void(0)">HEAD</a></li>
+                            <li><a onclick="$('input[name=method]').val('LOCK');$('#method').text('LOCK');" href="javascript:void(0)">LOCK</a></li>
+                            <li><a onclick="$('input[name=method]').val('LINK');$('#method').text('LINK');" href="javascript:void(0)">LINK</a></li>
+                            <li><a onclick="$('input[name=method]').val('UNLINK');$('#method').text('UNLINK');" href="javascript:void(0)">UNLINK</a></li>
+                            <li><a onclick="$('input[name=method]').val('OPTIONS');$('#method').text('OPTIONS');" href="javascript:void(0)">OPTIONS</a></li>
+                            <li><a onclick="$('input[name=method]').val('HEAD');$('#method').text('HEAD');" href="javascript:void(0)">HEAD</a></li>
+                            <li><a onclick="$('input[name=method]').val('PROFIND');$('#method').text('PROFIND');" href="javascript:void(0)">PROFIND</a></li>
+                            <li><a onclick="$('input[name=method]').val('PURGE');$('#method').text('PURGE');" href="javascript:void(0)">PURGE</a></li>
+                          </ul>
+                        </div>
+                        <input type="text" name="url" class="form-control" placeholder="Url">
+                        <input type="hidden" name="method">
+                      </div>
+                      <br />
+                      <ul class="nav nav-tabs">
+                        <li class="active"><a data-toggle="tab" href="#request_headers">Headers</a></li>
+                        <li><a data-toggle="tab" href="#request_body">Body</a></li>
+                        <li><a data-toggle="tab" href="#request_params">Params</a></li>
+                      </ul>
+                      <div class="tab-content">
+                        <div id="request_headers" class="tab-pane fade in active">
+                           <div class="content">
+                              <div class="key-value">
+                                <div class="col-lg-5 form-group"> 
+                                  <input type="text" class="form-control" placeholder="Key">
+                                </div>
+                                <div class="col-lg-5 form-group"> 
+                                  <input type="text" class="form-control" placeholder="Value">
+                                </div>
+                                <div class="col-lg-2 form-group"> 
+                                  <button type="button" class="btn btn-default"><i class="fa fa-plus"></i></button>
+                                  <button type="button" class="btn btn-danger"><i class="fa fa-times"></i></button>
+                                </div>
+                              </div>
+                            </div>
+                        </div>
+                        <div id="request_body" class="tab-pane fade">
+                          <div class="content">
+                            <div class="form-group">
+                              <label for="form-data" class="col-md-offset-1"> 
+                                <input type="radio" name="content_type" value="form-data" checked> form-data 
+                              </label>
+                              <label for="x-www-form-urlencoded" class="col-md-offset-1">
+                                <input type="radio" name="content_type" value="x-www-form-urlencoded"> x-www-form-urlencoded
+                              </label>
+                              <label for="raw" class="col-md-offset-1">
+                                <input type="radio" name="content_type" value="raw"> raw
+                              </label>
+                              <label for="binary" class="col-md-offset-1">
+                                <input type="radio" name="content_type" value="binary"> binary
+                              </label>
+                            </div>
+                             <div id="key-value-form" class="">
+                                <div class="col-lg-4 form-group"> 
+                                  <input type="text" class="form-control" placeholder="Key">
+                                </div>
+                                <div class="col-lg-4 form-group"> 
+                                  <input type="text" class="form-control" placeholder="Value">
+                                </div>
+                                <div class="col-lg-2 form-group"> 
+                                  <select class="form-control">
+                                    <option value="" selected="selected">Text</option>
+                                    <option value="">File</option>
+                                  </select>
+                                </div>
+                                <div class="col-lg-2 form-group"> 
+                                  <button type="button" class="btn btn-default"><i class="fa fa-plus"></i></button>
+                                  <button type="button" class="btn btn-danger"><i class="fa fa-times"></i></button>
+                                </div>
+                            </div>
+                            <div id="key-value-url" class="hide">
+                              <div class="col-lg-5 form-group"> 
+                                <input type="text" class="form-control" placeholder="Key">
+                              </div>
+                              <div class="col-lg-5 form-group"> 
+                                <input type="text" class="form-control" placeholder="Value">
+                              </div>
+                              <div class="col-lg-2 form-group"> 
+                                <button type="button" class="btn btn-default"><i class="fa fa-plus"></i></button>
+                                <button type="button" class="btn btn-danger"><i class="fa fa-times"></i></button>
+                              </div>
+                            </div>
+                            <div id="raw" class="hide">
+                              <div class="form-group"> 
+                                <textarea class="form-control" rows="20"></textarea>
+                              </div>
+                            </div>
+                            <div id="binary" class="hide">
+                              <div class="form-group"> 
+                                <input type="file">
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                        <div id="request_params" class="tab-pane fade">
+                          <div class="content">
+                            <div class="key-value">
+                              <div class="col-lg-5 form-group"> 
+                                <input type="text" class="form-control" placeholder="Key">
+                              </div>
+                              <div class="col-lg-5 form-group"> 
+                                <input type="text" class="form-control" placeholder="Value">
+                              </div>
+                              <div class="col-lg-2 form-group"> 
+                                <button type="button" class="btn btn-default"><i class="fa fa-plus"></i></button>
+                                <button type="button" class="btn btn-danger"><i class="fa fa-times"></i></button>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                      </fieldset>
+                      <fieldset>
+                        <legend>Response</legend>
+                        <div class="form-group">
+                          <span class="label label-danger pull-right">500</span>
+                        </div>
+                        <ul class="nav nav-tabs">
+                          <li class="active"><a data-toggle="tab" href="#response_body">Body</a></li>
+                          <li><a data-toggle="tab" href="#response_headers">Headers</a></li>
+                        </ul>
+                        <div id="response_body" class="tab-pane fade in active">
+                          <div class="content">
+                            <textarea class="form-control" rows="10"></textarea>
+                          </div>
+                        </div>
+                        <div id="response_headers" class="tab-pane fade">
+                          <div class="form-group">
+                            
+                          </div>
+                        </div>
+
+                        <div class="form-group">
+                          <button type="submit" class="btn btn-default">Send</button>
+                          <button type="submit" class="btn btn-primary">Save</button>
+                        </div>
+                      </fieldset>
+
+
+
+
+                   </form>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <footer class="main-footer">
+        <%include ../partials/footer.html %>
+      </footer>
+      <div class="control-sidebar-bg"></div>
+    </div>
+    <%include ../partials/bottom.html %>
+  </body>
+</html>
